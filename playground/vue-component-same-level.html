@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <app-header v-bind:data="num"></app-header>
+      <app-content v-on:click="handleEvent"></app-content>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      const appHeader = {
+        template: "<div>{{ data }}</div>",
+        props: ["data"],
+      };
+
+      const appContent = {
+        template: "<button v-on:click='passEvent'>Click</button>",
+        methods: {
+          passEvent: function () {
+            this.$emit("click", 10);
+          },
+        },
+      };
+
+      new Vue({
+        el: "#app",
+        data: {},
+        components: {
+          "app-header": appHeader,
+          "app-content": appContent,
+        },
+        data: {
+          num: 1,
+        },
+        methods: {
+          handleEvent: function (value) {
+            this.num = value;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
