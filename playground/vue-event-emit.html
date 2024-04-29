@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <app-header v-on:click="handleClick"></app-header>
+      <app-content v-on:click="handleIncrement"></app-content>
+      <app-footer v-bind:data="num"></app-footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      const appHeader = {
+        template: "<button v-on:click='passEvent'>Click</button>",
+        methods: {
+          passEvent: function () {
+            this.$emit("click");
+          },
+        },
+      };
+
+      const appContent = {
+        template: '<button v-on:click="increment">Add</button>',
+        methods: {
+          increment: function () {
+            this.$emit("click");
+          },
+        },
+      };
+
+      const appFooter = {
+        template: "<div>{{ data }}</div>",
+        methods: {
+          increment: function () {
+            this.$emit("click");
+          },
+        },
+        props: ["data"],
+      };
+
+      new Vue({
+        el: "#app",
+        components: {
+          "app-header": appHeader,
+          "app-content": appContent,
+          "app-footer": appFooter,
+        },
+        data: {
+          num: 1,
+        },
+        methods: {
+          handleClick: function () {
+            console.log("click");
+          },
+          handleIncrement: function () {
+            this.num++;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
