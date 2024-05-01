@@ -1,28 +1,28 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div>
+    <app-header v-bind:data="text" v-on:update="updateEvent"></app-header>
+    {{ text }}
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import AppHeader from "./components/AppHeader.vue";
 
 export default {
-  name: "App",
+  data: function () {
+    return {
+      text: "hello world",
+    };
+  },
   components: {
-    HelloWorld,
+    "app-header": AppHeader,
+  },
+  methods: {
+    updateEvent: function () {
+      this.text = "update hello world";
+    },
   },
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
